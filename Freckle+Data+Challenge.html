@@ -12605,6 +12605,7 @@ only showing top 100 rows
 <li>Top cities by volume</li>
 <li>Distribution over platforms</li>
 <li>Time of day activity</li>
+<li>IDFAs linked with multiple locations</li>
 </ul>
 
 </div>
@@ -12695,7 +12696,7 @@ only showing top 10 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># the following code is taken from plotly examples and modified to represent this data</span>
@@ -12746,7 +12747,7 @@ only showing top 10 rows
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~akaur3472/2.embed" height="525px" width="100%"></iframe>
@@ -13008,7 +13009,7 @@ only showing top 50 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="kn">as</span> <span class="nn">go</span>
@@ -13029,7 +13030,7 @@ only showing top 50 rows
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~akaur3472/13.embed" height="525px" width="100%"></iframe>
@@ -13053,7 +13054,7 @@ only showing top 50 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">van_tod</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Vancouver&#39;</span><span class="p">)</span>\
@@ -13082,7 +13083,7 @@ only showing top 50 rows
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~akaur3472/9.embed" height="525px" width="100%"></iframe>
@@ -13096,7 +13097,7 @@ only showing top 50 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">tor_tod</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Toronto&#39;</span><span class="p">)</span>\
@@ -13120,7 +13121,7 @@ only showing top 50 rows
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~akaur3472/11.embed" height="525px" width="100%"></iframe>
@@ -13138,6 +13139,242 @@ only showing top 50 rows
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Looking at the two line graphs above, we see more of a trend for individual cities with peak of traffic being between 5 AM - 3 PM. This makes a little more intuitive sense, since this coincides more closely with a workday. That being said, since the data ranges over just one day, it is not a large enough sample size to conclude for trends over time of day for a usual day of week.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Locations-associated-with-a-single-IDFA">Locations associated with a single IDFA<a class="anchor-link" href="#Locations-associated-with-a-single-IDFA">&#182;</a></h3><p>Let's see if there are any users which are associated with multiple cities during this sample time period.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">loc_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">idfa</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;num_cities&#39;</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s1">&#39;num_cities&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+       
+<span class="n">loc_df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+--------------------+----------+
+|                idfa|num_cities|
++--------------------+----------+
+|00000000-0000-000...|      2079|
+|74eac213-504f-43d...|        93|
+|da0e90fb-19e0-487...|        91|
+|f979ed6f-0461-46c...|        83|
+|653b5c7a-64d2-4b7...|        76|
+|907e2e13-17ad-4c0...|        73|
+|843600f6-5878-4b7...|        70|
+|1ffedf96-efaf-408...|        69|
+|9fcb9870-29c2-4c4...|        63|
+|3c22ff88-e193-4bf...|        62|
+|1da43983-c834-4fb...|        61|
+|1e588609-11f0-48b...|        61|
+|362eb796-25b8-483...|        61|
+|7bacefce-e646-483...|        60|
+|fd33ab05-f744-4b1...|        60|
+|a663f67e-35b3-4aa...|        60|
+|a19d0dca-af40-4c9...|        60|
+|6b150901-7aeb-46c...|        59|
+|45606497-5fab-484...|        58|
+|3d12507f-cbe2-487...|        58|
++--------------------+----------+
+only showing top 20 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This seems weird that there are users who are associated with &gt;40 cities in a single day. This might point to something off with the 'geohash' collection parameter. Let's take a look at the stats for the num_cities parameter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">loc_df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="s1">&#39;num_cities&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+-------+------------------+
+|summary|        num_cities|
++-------+------------------+
+|  count|            238211|
+|   mean| 2.145371120561183|
+| stddev|4.9325567454032475|
+|    min|                 1|
+|    max|              2079|
++-------+------------------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is interesting that the mean for this number of cities associated with an IDFA is &gt; 2. This might be skewed by noisy/test users e.g. the one with IDFA starting with '00000000-0000-000...' which has as many as 2079 cities associated with it. Let's take a look at the distribution of number of cities versus number of IDFAs linked to them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">loc_df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">loc_df</span><span class="o">.</span><span class="n">num_cities</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s1">&#39;idfa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;num_idfa&#39;</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s1">&#39;num_idfa&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+----------+--------+
+|num_cities|num_idfa|
++----------+--------+
+|         1|  136919|
+|         2|   45238|
+|         3|   22724|
+|         4|   12534|
+|         5|    7301|
+|         6|    4201|
+|         7|    2667|
+|         8|    1700|
+|         9|    1144|
+|        10|     856|
+|        11|     533|
+|        12|     467|
+|        13|     296|
+|        14|     277|
+|        15|     186|
+|        16|     185|
+|        17|     122|
+|        18|     115|
+|        20|      89|
+|        19|      84|
+|        21|      59|
+|        23|      46|
+|        22|      42|
+|        24|      33|
+|        26|      31|
+|        25|      29|
+|        28|      28|
+|        27|      28|
+|        29|      24|
+|        30|      22|
+|        31|      20|
+|        35|      19|
+|        32|      18|
+|        37|      16|
+|        36|      12|
+|        33|      12|
+|        34|      12|
+|        41|      10|
+|        39|      10|
+|        42|       9|
+|        40|       9|
+|        38|       8|
+|        47|       8|
+|        44|       7|
+|        46|       7|
+|        48|       5|
+|        45|       5|
+|        60|       4|
+|        51|       4|
+|        52|       3|
+|        43|       3|
+|        55|       3|
+|        61|       3|
+|        56|       3|
+|        58|       3|
+|        49|       2|
+|        54|       2|
+|        57|       2|
+|      2079|       1|
+|        93|       1|
+|        76|       1|
+|        91|       1|
+|        83|       1|
+|        63|       1|
+|        73|       1|
+|        69|       1|
+|        70|       1|
+|        62|       1|
+|        59|       1|
+|        50|       1|
++----------+--------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This seems much more intuitive: A high volume of the IDFAs have a single city associated with them, and most of them have &lt;= 4 cities associated with them. The IDFAs with &gt; 20 cities associated with them are lesser in number and can be considered noise, but it is still weird that there are any IDFAs which show up in upto 20 cities.</p>
 
 </div>
 </div>
